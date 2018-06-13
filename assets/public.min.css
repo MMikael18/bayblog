@@ -1,0 +1,117 @@
+html, body {
+  margin: 0;
+  padding: 0; }
+
+a {
+  color: #444; }
+
+a:hover {
+  color: #999; }
+
+/* Site footer and content size */
+html {
+  height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0; }
+  body header, body footer {
+    flex: 0 0 auto; }
+  body .container {
+    flex: 1 0 auto; }
+
+html.admin-bar {
+  height: calc(100% - 32px); }
+
+/* section end */
+button.burger-button {
+  border-width: 0;
+  background-color: transparent;
+  cursor: pointer; }
+  button.burger-button div {
+    width: 35px;
+    height: 4px;
+    background-color: #666;
+    margin: 7px 0; }
+
+/************************************************/
+/**                 header.php                 **/
+/************************************************/
+header.main {
+  background-color: white;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 35px; }
+
+.bay-main-left {
+  display: flex; }
+  .bay-main-left a.custom-logo-link {
+    max-height: 47px;
+    display: block; }
+    .bay-main-left a.custom-logo-link img {
+      margin-left: 1.5rem;
+      height: 100%;
+      width: auto; }
+
+.bay-main-navigation {
+  padding: 1rem 2rem; }
+  .bay-main-navigation > div:nth-child(1) {
+    flex-grow: 0; }
+  .bay-main-navigation > div:nth-child(2) {
+    flex-grow: 2;
+    text-align: center; }
+  .bay-main-navigation > div:nth-child(3) {
+    flex-grow: 0; }
+
+/************************************************/
+/**                 index.php                  **/
+/************************************************/
+.bay-blog-mainlist {
+  column-count: 3; }
+  .bay-blog-mainlist > article {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border: solid 1px #ccc;
+    break-inside: avoid-column;
+    background-color: white;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.05); }
+
+/**/
+.admin-bar .bay-drawer {
+  top: 32px; }
+
+.bay-drawer {
+  background-color: white;
+  border-left: solid 1px #ccc;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.25);
+  padding: 1rem 2rem;
+  width: 450px;
+  /*display: none;*/
+  transition: left .5s;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -50%;
+  right: 100vw; }
+  .bay-drawer.bay-drawer-open {
+    left: 1px;
+    right: auto; }
+  .bay-drawer.bay-drawer-open::before {
+    content: " ";
+    position: absolute;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    right: -200vw;
+    background-color: black;
+    opacity: 0.5; }
+  .bay-drawer nav #sidebar {
+    margin-top: 2rem; }
+    .bay-drawer nav #sidebar ul,
+    .bay-drawer nav #sidebar ul li {
+      margin: 0;
+      padding: 0;
+      list-style: none; }
+
