@@ -10,6 +10,7 @@ Tags: Bay Blog
 
 /* =WordPress Core
 -------------------------------------------------------------- */
+/*
 img {
     -ms-interpolation-mode: bicubic;
     border: 0;
@@ -17,7 +18,7 @@ img {
     max-width: 100%;
     vertical-align: middle;
 }
-
+*/
 .alignnone {
     margin: 5px 20px 20px 0;
 }

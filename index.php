@@ -1,17 +1,22 @@
 <?php get_header(); ?>
 
-<div class="container">
+<div class="container" id="bay-container"> 
     <div class="row">
-        <div class="col-sm bay-blog-mainlist">
-            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                <article>
-                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                    <p>Posted on <?php the_time('F jS, Y') ?></p>
-                    <?php the_excerpt(__('(more...)')); ?>                    
-                </article>
-            <?php endwhile; else: ?>
-                <?php _e('Sorry, no posts matched your criteria.'); ?><
-            <?php endif; ?>
+        <div class="col-sm">
+            <main class="bay-index bay-blog-mainlist" id="data-containes">
+            <?php
+                $allposts = array( 
+                    'post_type'      =>  'post',
+                    'posts_per_page' =>  get_theme_mod('posts_per_page', '8')
+                );            
+                $wp_query = new WP_Query($allposts); 
+                if ($wp_query->have_posts()) : while ($wp_query->have_posts()) : the_post(); 
+                    get_template_part( 'parts/content', get_post_format() );
+                endwhile; else: 
+                    _e('Sorry, no posts matched your criteria.','bay_theme'); 
+                endif; 
+            ?>
+            </main>
         </div>
         
     </div>

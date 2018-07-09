@@ -3,6 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
+            <main class="bay-page">
 			<?php 
             if ( have_posts() ) : 
                 while ( have_posts() ) : 
@@ -17,6 +18,7 @@
                 endwhile; 
             endif; 
 			?>
+            </main>
 		</div>
 	</div>
 </div>
