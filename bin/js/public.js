@@ -1,3 +1,4 @@
+import 'bootstrap';
 import css from '../css/theme.scss'; 
 'use strict';
 
@@ -5,19 +6,55 @@ import css from '../css/theme.scss';
 class BurgerClass {
 
     constructor() {
-        let open = $( "#burger-open" )
-            close = $( "#burger-close" )
+        let open = jQuery( "#burger-open" ),
+            close = jQuery( "#burger-close" ),
+            closeShadow = jQuery( ".bay-drawer-shadow" )
         
-        $( open ).on( 'click', ( event ) => {
-            //$( '[data-drawer]' ).show()
-            $( '[data-drawer]' ).toggleClass("bay-drawer-close bay-drawer-open")
+        jQuery( open ).on( 'click', ( event ) => {
+            jQuery( '[data-drawer]' ).toggleClass("bay-drawer-close bay-drawer-open")
         } )
-        $( close ).on( 'click', ( event ) => {
-            //$( '[data-drawer]' ).hide()
-            $( '[data-drawer]' ).toggleClass("bay-drawer-open bay-drawer-close")
+        jQuery( close ).on( 'click', ( event ) => {
+            jQuery( '[data-drawer]' ).toggleClass("bay-drawer-open bay-drawer-close")
+        } )
+        jQuery( closeShadow ).on( 'click', ( event ) => {
+            jQuery( '[data-drawer]' ).toggleClass("bay-drawer-open bay-drawer-close")
         } )
     }
 
-};
+}
 
-let burgerButton = new BurgerClass()
+class SearchClass {
+    constructor(container) {
+        this.container =  container || "#data-containes"
+        jQuery( "#bayajaxsearch" ).keypress((e) => {
+            if(e.which === 13) return false;            
+        })
+        jQuery( "#bayajaxsearch" ).keyup(() => {            
+            this.ajax_search();             
+        })
+    }
+
+    ajax_search(){        
+        let value = jQuery( "#bayajaxsearch" ).val()
+        fetch(
+            bay_loadmore_params.ajaxurl+'?action=get_postlist',{
+                method: "post",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({query: value})
+            })
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                jQuery( this.container ).html(html)
+            })
+    }
+}
+
+jQuery(function(){
+    let burgerButton = new BurgerClass(),
+        BayAjaxSearch = new SearchClass()
+})
