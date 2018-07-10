@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="container" id="bay-container"> 
+<div class="container bay-container"> 
     <div class="row">
         <div class="col-sm">
             <main class="bay-index bay-blog-mainlist" id="data-containes">

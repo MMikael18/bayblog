@@ -80,23 +80,25 @@ button.burger-button {
     height: calc(100vh - 75px);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center top;        
+    background-position: center center;        
 }
 .bay-hero-header::before{
     content: " ";
     position: absolute;
     top: 0;bottom: 0;right: 0;left: 0;
-    background-color: black;
-    opacity: 0.5;
-  }
+    background-color: black;    
+}
 .bay-hero-col{
     display: flex;
+    width: 100%;
+    *{
+        color: white;
+    }
     .bay-hero-content {
         vertical-align: bottom;
         align-self: flex-end;
-        *{
-            color: white;
-        }
+        padding: 45px;
+        width: 100%;
     }
 }
 
@@ -176,9 +178,10 @@ header.main{
 //                   single.php
 /************************************************/
 
-.bay-single{
-    background-color: white;
-    padding: 45px;
+.bay-single-content-width{
+    vertical-align: bottom;
+    align-self: flex-end;
+    padding: 45px calc(100% - 1200px);
 }
 
 /************************************************/

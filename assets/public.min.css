@@ -6347,7 +6347,7 @@ button.burger-button {
   height: calc(100vh - 75px);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center top; }
+  background-position: center center; }
 
 .bay-hero-header::before {
   content: " ";
@@ -6356,16 +6356,18 @@ button.burger-button {
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: black;
-  opacity: 0.5; }
+  background-color: black; }
 
 .bay-hero-col {
-  display: flex; }
+  display: flex;
+  width: 100%; }
+  .bay-hero-col * {
+    color: white; }
   .bay-hero-col .bay-hero-content {
     vertical-align: bottom;
-    align-self: flex-end; }
-    .bay-hero-col .bay-hero-content * {
-      color: white; }
+    align-self: flex-end;
+    padding: 45px;
+    width: 100%; }
 
 /************************************************/
 /**                 header.php                 **/
@@ -6423,9 +6425,10 @@ header.main {
 
 /************************************************/
 /************************************************/
-.bay-single {
-  background-color: white;
-  padding: 45px; }
+.bay-single-content-width {
+  vertical-align: bottom;
+  align-self: flex-end;
+  padding: 45px calc(100% - 1200px); }
 
 /************************************************/
 /************************************************/

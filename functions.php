@@ -86,30 +86,58 @@ if (!function_exists('bay_get_burger')) {
 
 if (!function_exists('bay_hero_header')) {
   function bay_hero_header(){
-    $background_img = get_theme_mod('bay_theme_customizer_backgroundimage','');
-    if(strlen($background_img)) : 
-      ?> <div class="bay-hero-header" style="<?php echo "background-image: url(".$background_img.")"; ?>"> <?php
-    else:
-      ?> <div class="bay-hero-header"> <?php
-    endif;
-          get_bloginfo(); 
-      ?>
+
+    global $wp_query;
+    $post = $wp_query->post;
+    $background_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' )[0];
+    if(is_home()){
+      $background_img = get_theme_mod('bay_theme_customizer_backgroundimage','');
+    }
+    $style = "";
+    if(strlen($background_img)){
+      $style = "style='background-image: url(".$background_img.")'";
+    }
+    ?>
+    <div class="bay-hero-header" <?php echo $style; ?> >
       <div class="container"> 
         <div class="row">
-          <div class="col-sm bay-hero-col">
-            <div class="bay-hero-content">
-              <?php if (display_header_text()): ?>
-                <h1><?php echo get_bloginfo( 'name' ); ?></h1>
-                <p><?php echo get_bloginfo( 'description', 'display' );?></p>
+          <div class="col-sm bay-hero-col">            
+              <?php if (is_home()): ?>
+                <div class="bay-hero-content">
+                  <h1><?php echo get_bloginfo( 'name' ); ?></h1>
+                  <p><?php echo get_bloginfo( 'description', 'display' );?></p>
+                </div>
+                <?php else :
+                  bay_post_header();
+                ?>
               <?php endif; ?>
-            </div>
           </div>
         </div>
       </div>
     </div>
-<?php
+    <?php
   }
 }
+
+if (!function_exists('bay_post_header')) {
+  function bay_post_header(){
+    global $wp_query;
+    $post = $wp_query->post;
+   
+    $date = date_i18n( get_option( 'date_format' ), strtotime( $post->post_modified ) );
+    $author_name = get_the_author_meta( 'display_name', $post->post_author);
+    ?>
+    <div class="bay-single-content-width">
+      <h2 class="blog-post-title"><?php the_title(); ?></h2>
+      <p class="blog-post-meta"><?php echo $date; ?> 
+        <?php _e('by', Bayset::$domain) ?>
+        <a href="#"><?php echo $author_name; ?></a>
+      </p>      
+    </div>
+    <?php
+  }
+}
+
 
 /************************************/
 // Widget Areas
